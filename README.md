@@ -26,5 +26,5 @@
 <h2>Colour Key</h2>
 <img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/color%20key.bmp"></img>
 <h2>Todo</h2>
-* User input
+* User input<br>
 * Random numbers between a range
