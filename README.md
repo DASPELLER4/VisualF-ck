@@ -4,7 +4,7 @@
 <h2>Basic Explanation</h2>
 * This programming language operates on a single row of pixels in a bmp image.<br>
 * It has reserved keywords in the form of specific 24bit colours<br>
-* Variables are declared and initialized by calling them outside a function call<br>
+* Variables are declared and initialized by referncing them outside a function call of course they cannot be one of the reserved colours<br>
 * Function calls consist of {[args],function} where the function is one of the afore mentioned keywords<br>
 * Some functions also allow the length of the function colour as an argument like in increment for example where arg 1 is incremented by the function colour length<br>
 * Of course these functions also allow for standard function calls<br>
@@ -22,3 +22,4 @@
 10. If Greater Than - takes four arguments takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#397463</b><br>
 <h2>Example with explanation</h2>
 <img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/code%20run%20through.png"></img>
+<h2>Colour Key</h2>
