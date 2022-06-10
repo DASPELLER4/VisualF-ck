@@ -21,4 +21,4 @@
 9. If Less Than - takes four arguments takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#9aa6ad</b><br>
 10. If Greater Than - takes four arguments takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#397463</b><br>
 <h2>Example with explanation</h2>
-<img></img>
+<img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/code%20run%20through.png"></img>
