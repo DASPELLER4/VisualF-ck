@@ -23,3 +23,4 @@
 <h2>Example with explanation</h2>
 <img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/code%20run%20through.png"></img>
 <h2>Colour Key</h2>
+<img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/color%20key.bmp"></img>
