@@ -129,6 +129,7 @@ int _in(colourVariable_t variables[], uint32_t colour){
 int iterateThrough(uint8_t data[],int length){
 	colourVariable_t variables[getAmountOfVariables(data, length)]; // getAmount should keep track of all the variables and increment, or just estimate idgaf
 	int curr = 0;
+	char c = 0;
 	while(curr < length-1 && getPixel(data,curr)!=0xffffff){
 		uint32_t currPixel = getPixel(data,curr);
 		switch(currPixel){
@@ -155,7 +156,7 @@ int iterateThrough(uint8_t data[],int length){
 								return 4;
 							for(int i = 0; i < currVariable; i++){
 							        if(variables[i].id == args[0]){
-									scanf("%c",&(variables[i].value));
+									scanf("%lc",&(variables[i].value));
 									while ( (c = getchar()) != '\n' && c != EOF);
 								}
 							}
@@ -191,7 +192,7 @@ int iterateThrough(uint8_t data[],int length){
 								}
 							}
 						} else
-							return 9
+							return 9;
 					}
 					case IFL:{
                                                 if(argsCount == 4){
