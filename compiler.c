@@ -317,6 +317,26 @@ int iterateThrough(uint8_t data[],int length){
 						}
 						break;
 					}
+					case DEC:{
+						if(argsCount == 1){
+							if(!_in(variables,args[0]))
+								return 4;
+							for(int i = 0; i < currVariable; i++){
+							        if(variables[i].id == args[0])
+						        	        variables[i].value = getVariableValue(variables,args[0])-funcLength;
+							}
+						} else if(argsCount == 2){
+							if(!_in(variables,args[0]) || !_in(variables,args[1]))
+							        return 4;
+							for(int i = 0; i < currVariable; i++){
+							        if(variables[i].id == args[0])
+						        	        variables[i].value = getVariableValue(variables,args[0])-getVariableValue(variables,args[1]);
+							}
+						} else {
+							return 1;
+						}
+						break;
+					}
 					case MUL:{
 					        if(argsCount == 1){
 					                if(!_in(variables,args[0]))
