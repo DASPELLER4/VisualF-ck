@@ -83,10 +83,15 @@ int main(int argc, char **argv){
 	if(!fp){
 		_ERROR("Failed to open file", 1);
 	}
+	uint8_t type = 0;
+	_READTOVAR(type,0,2,fp);
+	if(type != 0x42 && type != 0x4d){
+		_ERROR("Not a BMP",1);
+	}
 	uint32_t sX = 0,sY = 0,off = 0;
-	_READTOVAR(sX,18,3,fp);
-	_READTOVAR(sY,22,3,fp);
-	_READTOVAR(off,10,3,fp);
+	_READTOVAR(sX,18,4,fp);
+	_READTOVAR(sY,22,4,fp);
+	_READTOVAR(off,10,4,fp);
 	if(sY > 1){
 		_WARN("Image contains y component\n\tthis will be ignored and ONLY the first row will be read");
 	}
