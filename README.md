@@ -22,9 +22,9 @@
 10. If Greater Than - takes four arguments takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#397463</b><br>
 11. End Program - not a function but just a white pixel ends the program <b>#ffffff</b><br>
 <h2>Example with explanation</h2>
-<img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/code%20run%20through.png"></img>
+<img src="https://raw.githubusercontent.com/DASPELLER4/VisualFuck/media/code%20run%20through.png"></img>
 <h2>Colour Key</h2>
-<img src="https://raw.githubusercontent.com/DASPELLER4/Unnamed-esolang/main/color%20key.bmp"></img>
+<img src="https://raw.githubusercontent.com/DASPELLER4/VisualFuck/media/color%20key.bmp"></img>
 <h2>Todo</h2>
 * User input<br>
 * Random numbers between a range
