@@ -20,7 +20,7 @@
 8. If Equal - takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#00ff12</b><br>
 9. If Less Than - takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#9aa6ad</b><br>
 10. If Greater Than - takes four arguments {arg1: comparison left value, arg2: comparison right value, arg3: where to jump if true, arg4: where to jump if false} <b>#397463</b><br>
-11. Random Number - takes three arguments {arg1: colour to affect, arg2: range start, arg3: range end (EXCL)} <b>#194d33</b><br>
+11. Random Number - takes three arguments {arg1: colour to affect, arg2: range start (INCL), arg3: range end (EXCL)} <b>#194d33</b><br>
 12. User Int Input - takes one argument {arg1: colour to set} <b>#ad456e</b><br>
 13. User Char Input - takes one argument {arg1: colour to set} <b>#887d3e</b><br>
 14. End Program - not a function but just a white pixel ends the program <b>#ffffff</b><br>
