@@ -162,6 +162,7 @@ int iterateThrough(uint8_t data[],int length){
 							}
 						} else 
 							return 5;
+						break;
 					}
 					case USRI:{
 						if(argsCount == 1){
@@ -175,6 +176,7 @@ int iterateThrough(uint8_t data[],int length){
 							}
 						} else 
 							return 5;
+						break;
 					}
 					case RAN:{
 						if(argsCount == 3){
@@ -193,6 +195,7 @@ int iterateThrough(uint8_t data[],int length){
 							}
 						} else
 							return 9;
+						break;
 					}
 					case IFL:{
                                                 if(argsCount == 4){
