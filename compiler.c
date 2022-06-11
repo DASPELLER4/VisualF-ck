@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
-
+#include <time.h>
+#include <stdlib.h>
 // START DATA SECTION
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -23,10 +24,13 @@ enum RESERVED_COLOURS{
 	JMP=0x006e120e,
 	IFE=0x0000ff12,
 	IFL=0x009aa6ad,
-	IFG=0x00397463
+	IFG=0x00397463,
+	RAN=0x00194d33,
+	USRI=0x00ad456e,
+	USRC=0x00887d3e
 };
 
-char ERRORCODES[][255] = {"Reserved Colour Found Outside Of Function Call","Function Expects 1 Or 2 Arguments","Function Arguments Takes Up More Than 1 Pixel","Too Many Arguments","Variable Referenced As Argument Not Found","Print Functions Expect 1 Argument","Function Expects 1 Or 0 Arguments","Jumped Out Of Bounds","If Functions Expect 4 Arguments"};
+char ERRORCODES[][255] = {"Reserved Colour Found Outside Of Function Call","Function Expects 1 Or 2 Arguments","Function Arguments Takes Up More Than 1 Pixel","Too Many Arguments","Variable Referenced As Argument Not Found","Function Expects 1 Argument","Function Expects 1 Or 0 Arguments","Jumped Out Of Bounds","If Functions Expect 4 Arguments","Function Expects 3 Arguments"};
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // END DATA SECTION
@@ -41,7 +45,7 @@ char ERRORCODES[][255] = {"Reserved Colour Found Outside Of Function Call","Func
 #define _GETRED(rgb) rgb>>16
 #define _GETGREEN(rgb) (rgb&65280)>>8
 #define _GETBLUE(rgb) (rgb&255)
-#define _isReserved(rgb) ((rgb == INC || rgb == CBRACKET || rgb == COMMA || rgb == PRINTC || rgb == PRINTI || rgb == DEC || rgb == MUL || rgb == DIV || rgb == JMP || rgb == IFE || rgb == IFL || rgb == IFG) ? 1 : 0)
+#define _isReserved(rgb) ((rgb == INC || rgb == CBRACKET || rgb == COMMA || rgb == PRINTC || rgb == PRINTI || rgb == DEC || rgb == MUL || rgb == DIV || rgb == JMP || rgb == IFE || rgb == IFL || rgb == IFG || rgb == RAN || rgb == USRI || rgb == USRC) ? 1 : 0)
 #define addVariable(rgb) (variables[currVariable++] = (colourVariable_t){rgb,1})
 #define getPixel(data,pos) (data[pos*3+2]<<16)+(data[pos*3+1]<<8)+(data[pos*3])
 
@@ -51,6 +55,11 @@ char alreadyVariable(uint32_t id, colourVariable_t vars[]){
 			return i;
 	}
 	return -1;
+}
+
+int getRandNum(int start, int end){
+	int out = rand();
+	return (out % (end-start) + start);
 }
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -66,6 +75,7 @@ int getAmountOfVariables(uint8_t data[], int length);
 // END FUNCTION DECLERATIONS
 
 int main(int argc, char **argv){
+	srand((int)time(0));
 	if(argc < 2){
 		_ERROR("Missing Argument", 1);
 	}
@@ -119,6 +129,7 @@ int _in(colourVariable_t variables[], uint32_t colour){
 int iterateThrough(uint8_t data[],int length){
 	colourVariable_t variables[getAmountOfVariables(data, length)]; // getAmount should keep track of all the variables and increment, or just estimate idgaf
 	int curr = 0;
+	char c = 0;
 	while(curr < length-1 && getPixel(data,curr)!=0xffffff){
 		uint32_t currPixel = getPixel(data,curr);
 		switch(currPixel){
@@ -139,6 +150,50 @@ int iterateThrough(uint8_t data[],int length){
 					}
 				}
 				switch(function){
+					case USRC:{
+						if(argsCount == 1){
+							if(!_in(variables,args[0]))
+								return 4;
+							for(int i = 0; i < currVariable; i++){
+							        if(variables[i].id == args[0]){
+									scanf("%lc",&(variables[i].value));
+									while ( (c = getchar()) != '\n' && c != EOF);
+								}
+							}
+						} else 
+							return 5;
+					}
+					case USRI:{
+						if(argsCount == 1){
+							if(!_in(variables,args[0]))
+								return 4;
+							for(int i = 0; i < currVariable; i++){
+							        if(variables[i].id == args[0]){
+									scanf("%d",&(variables[i].value));
+									while ( (c = getchar()) != '\n' && c != EOF);
+								}
+							}
+						} else 
+							return 5;
+					}
+					case RAN:{
+						if(argsCount == 3){
+							if(!_in(variables,args[0]) || !_in(variables,args[1]) || !_in(variables,args[2]))
+								return 4;
+							if(getVariableValue(variables,args[1])<getVariableValue(variables,args[2])){
+								for(int i = 0; i < currVariable; i++){
+							        	if(variables[i].id == args[0])
+						        		        variables[i].value = getRandNum(getVariableValue(variables,args[1]),getVariableValue(variables,args[2]));
+								}
+							} else {
+								for(int i = 0; i < currVariable; i++){
+							        	if(variables[i].id == args[0])
+						        		        variables[i].value = getRandNum(getVariableValue(variables,args[2]),getVariableValue(variables,args[1]));
+								}
+							}
+						} else
+							return 9;
+					}
 					case IFL:{
                                                 if(argsCount == 4){
                                                         if(!_in(variables,args[0]) || !_in(variables,args[1]) || !_in(variables,args[2]) || !_in(variables,args[3]))
