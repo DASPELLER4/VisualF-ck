@@ -49,7 +49,7 @@ char ERRORCODES[][255] = {"Reserved Colour Found Outside Of Function Call","Func
 #define addVariable(rgb) (variables[currVariable++] = (colourVariable_t){rgb,1})
 #define getPixel(data,pos) (data[pos*3+2]<<16)+(data[pos*3+1]<<8)+(data[pos*3])
 
-char alreadyVariable(uint32_t id, colourVariable_t vars[]){
+char alreadyVariable(colourVariable_t vars[], uint32_t id){
 	for(int i = 0; i<currVariable; i++){
 		if(vars[i].id == id)
 			return i;
@@ -109,13 +109,6 @@ int32_t getVariableValue(colourVariable_t variables[], uint32_t colour){
 			return variables[i].value;
 	}
 	return 0;
-}
-
-void setVariableValue(colourVariable_t *(variables[]), uint32_t colour, int32_t val){
-        for(int i = 0; i < currVariable; i++){
-                if(variables[i]->id == colour)
-                        variables[i]->value = val;
-        }
 }
 
 int _in(colourVariable_t variables[], uint32_t colour){
@@ -388,7 +381,7 @@ int iterateThrough(uint8_t data[],int length){
 				if(_isReserved(currPixel)){ // a function is used outside brackets
 					return 0;
 				}
-				int exists = alreadyVariable(currPixel, variables);
+				int exists = alreadyVariable(variables, currPixel);
 				if(exists == -1){ // variable doesn't exist
 					addVariable(currPixel);
 					for(++curr;getPixel(data,curr) == currPixel;++curr){
