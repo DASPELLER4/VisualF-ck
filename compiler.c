@@ -68,6 +68,7 @@ int getRandNum(int start, int end){
 // START FUNCTION DECLERATIONS
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+int getPixelPosFromInstr(uint8_t data[], int length, int instr);
 int iterateThrough(uint8_t data[], int length);
 int getAmountOfVariables(uint8_t data[], int length);
 
@@ -107,6 +108,33 @@ int main(int argc, char **argv){
 
 // START FUNCTION INITIALISATIONS
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+int getPixelPosFromInstr(uint8_t data[], int length, int instr){
+	int currInstr = 0;
+	int currPix = 0;
+	uint32_t currColr = 0xffffffff;
+	while(currPix < length){
+		currColr = getPixel(data,currPix);
+		currInstr++;
+		if(currInstr == instr){
+			return currPix;
+		}
+		if(currPix == 0){ // function call
+			currPix++;
+			currColr = getPixel(data,currPix);
+			while(currColr != 0){
+				currPix++;
+				currColr = getPixel(data,currPix);	
+			}
+			currPix++;
+		} else { // declaration
+			while(currPix == getPixel(data,currPix)){
+				currPix++;
+			}
+		}
+	}
+	return -1; // handle error
+}
 
 int32_t getVariableValue(colourVariable_t variables[], uint32_t colour){
 	for(int i = 0; i < currVariable; i++){
@@ -200,14 +228,12 @@ int iterateThrough(uint8_t data[],int length){
                                                         if(!_in(variables,args[0]) || !_in(variables,args[1]) || !_in(variables,args[2]) || !_in(variables,args[3]))
                                                                 return 4;
                                                         if(getVariableValue(variables,args[0]) < getVariableValue(variables,args[1])){
-                                                                if(-1 < (getVariableValue(variables,args[2])-1) && length > (getVariableValue(variables,args[2])-1))
-                                                                        curr = (getVariableValue(variables,args[2])-2);
-                                                                else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[2]))-1;
+								if(curr == -1)
                                                                         return 7;
                                                         } else {
-                                                                if(-1 < (getVariableValue(variables,args[3])-1) && length > (getVariableValue(variables,args[3])-1))
-                                                                        curr = (getVariableValue(variables,args[3])-2);
-                                                                else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+								if(curr == -1)
                                                                         return 7;
                                                         }
                                                 } else
@@ -219,14 +245,12 @@ int iterateThrough(uint8_t data[],int length){
                                                         if(!_in(variables,args[0]) || !_in(variables,args[1]) || !_in(variables,args[2]) || !_in(variables,args[3]))
                                                                 return 4;
                                                         if(getVariableValue(variables,args[0]) > getVariableValue(variables,args[1])){
-                                                                if(-1 < (getVariableValue(variables,args[2])-1) && length > (getVariableValue(variables,args[2])-1))
-                                                                        curr = (getVariableValue(variables,args[2])-2);
-                                                                else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+								if(curr == -2)
                                                                         return 7;
                                                         } else {
-                                                                if(-1 < (getVariableValue(variables,args[3])-1) && length > (getVariableValue(variables,args[3])-1))
-                                                                        curr = (getVariableValue(variables,args[3])-2);
-                                                                else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+                                                                if (curr == -2)
                                                                         return 7;
                                                         }
                                                 } else
@@ -238,14 +262,12 @@ int iterateThrough(uint8_t data[],int length){
 							if(!_in(variables,args[0]) || !_in(variables,args[1]) || !_in(variables,args[2]) || !_in(variables,args[3]))
 								return 4;
 							if(getVariableValue(variables,args[0]) == getVariableValue(variables,args[1])){
-								if(-1 < (getVariableValue(variables,args[2])-1) && length > (getVariableValue(variables,args[2])-1))
-								        curr = (getVariableValue(variables,args[2])-2);
-								else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+								if(curr == -2)
 								        return 7;
 							} else {
-                                                                if(-1 < (getVariableValue(variables,args[3])-1) && length > (getVariableValue(variables,args[3])-1))
-                                                                        curr = (getVariableValue(variables,args[3])-2);
-                                                                else
+								curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+                                                                if(curr==-2)
                                                                         return 7;
 							}
 						} else
@@ -258,15 +280,13 @@ int iterateThrough(uint8_t data[],int length){
 							        return 4;
 							for(int i = 0; i < currVariable; i++){
                                                         	if(variables[i].id == args[0])
-									if(-1 < (getVariableValue(variables,args[0])-1) && length > (getVariableValue(variables,args[0])-1))
-										curr = (getVariableValue(variables,args[0])-2); // why is there 2 you may ask and not 1, well...
-									else							// later in this switch there is a curr++ to advance
-										return 7;					// to the next pixel, with counteracts a jump
+									curr = getPixelPosFromInstr(data, length, getVariableValue(variables,args[3]))-1;
+									if(curr == -2)
+										return 7;
 	                                                }
 						} else if(argsCount == 0){
-							if(-1 < funcLength-1 && length > funcLength-1)
-								curr = funcLength-2;
-                                                        else
+							curr = getPixelPosFromInstr(data, length, funcLength)-1;
+							if(curr == -2)
                                                                 return 7;
 						} else {
 							return 6;
