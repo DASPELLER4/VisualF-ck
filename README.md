@@ -40,4 +40,6 @@ Download the repository:<br>
 Compile the compiler:<br>
 <code>make</code><br>
 Install:<br>
-<code>sudo make install</code>
+<code>sudo make install</code><br>
+To run a BMP:<br>
+<code>vfc path/to/bmp</code>
