@@ -24,6 +24,7 @@
 12. User Int Input - takes one argument {arg1: colour to set} <b>#ad456e</b><br>
 13. User Char Input - takes one argument {arg1: colour to set} <b>#887d3e</b><br>
 14. End Program - not a function but just a white pixel ends the program <b>#ffffff</b><br>
+<b>Functions that jump to a place (Jump and the if functions) jumps to an instruction, be it declaration of a variable or a function call, so jump to 2 of </b><code>r=65; {r,PRINTC};</code><b>would repeat</b><code>{r,PRINTC};</code>
 <h2>Example with explanation</h2>
 <img src="https://raw.githubusercontent.com/DASPELLER4/VisualFuck/media/code%20run%20through.png"></img>
 <h2>Colour Key</h2>
