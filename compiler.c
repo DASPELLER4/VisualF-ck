@@ -112,23 +112,23 @@ int main(int argc, char **argv){
 int getPixelPosFromInstr(uint8_t data[], int length, int instr){
 	int currInstr = 0;
 	int currPix = 0;
-	uint32_t currColr = 0xffffffff;
+	uint32_t currColr = 0;
 	while(currPix < length){
-		currColr = getPixel(data,currPix);
+		currColr = (getPixel(data,currPix));
 		currInstr++;
 		if(currInstr == instr){
 			return currPix;
 		}
-		if(currPix == 0){ // function call
+		if(currColr == 0x00000000){ // function call
 			currPix++;
 			currColr = getPixel(data,currPix);
-			while(currColr != 0){
+			while(currColr != 0x00000000){
 				currPix++;
 				currColr = getPixel(data,currPix);	
 			}
 			currPix++;
 		} else { // declaration
-			while(currPix == getPixel(data,currPix)){
+			while(currColr == (getPixel(data,currPix))){
 				currPix++;
 			}
 		}
