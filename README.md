@@ -1,12 +1,11 @@
 # V*sualFuck
 <h2>A visual esolang inspired by BrainFuck</h2>
 <hr>
-<a href="https://github.com/DASPELLER4/VisualFuck/main/README.md#basic-explanation">Basic Explanation</a>
-<a href="https://github.com/DASPELLER4/VisualFuck/main/README.md#all-functions-and-their-arguments">Functions</a>
-<a href="https://github.com/DASPELLER4/VisualFuck/main/README.md#example-with-explanation">Example</a>
-<a href="https://github.com/DASPELLER4/VisualFuck/main/README.md#colour-key">Color Key</a>
-<h2>Basic Explanation</h2>
-<a href="https://github.com/DASPELLER4/VisualFuck/main/README.md#installation">Installation</a>
+<a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#basic-explanation">Basic Explanation</a>
+<a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#all-functions-and-their-arguments">Functions</a>
+<a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#example-with-explanation">Example</a>
+<a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#colour-key">Color Key</a>
+<a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#installation">Installation</a>
 <h2>Basic Explanation</h2>
 * This programming language operates on a single row of pixels in a bmp image.<br>
 * It has reserved keywords in the form of specific 24bit colours<br>
