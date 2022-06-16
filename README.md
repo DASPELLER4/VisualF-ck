@@ -1,7 +1,7 @@
 # V*sualFuck
 <h2>A visual esolang inspired by BrainFuck (Mainly Assembly Though)</h2>
 <hr>
-<b>Disclaimer: </b>This is made by me, at 14 so don't expect greatness
+<b>Disclaimer: </b>This is made by me, at 14 so don't expect greatness<br>
 <a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#basic-explanation">Basic Explanation</a><br>
 <a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#all-functions-and-their-arguments">Functions</a><br>
 <a href="https://github.com/DASPELLER4/VisualFuck/blob/main/README.md#example-with-explanation">Example</a><br>
