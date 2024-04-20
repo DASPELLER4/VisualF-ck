@@ -10,7 +10,7 @@
 * Some functions also allow the length of the function colour as an argument like in increment for example where arg 1 is incremented by the function colour length<br>
 * Of course these functions also allow for standard function calls<br>
 <h2>All Functions and their arguments</h2>
-<b>Bold</b> functions allow their last argument to be the function colour length<br>
+<b>Bold</b> functions allow their last argument to be the function colour length, this means that instead of {green,blue,increment} where blue is equal to 4, you can do {green,increment*4} where increment is repeated 4 times.<br>
 1. <b>Increment</b> - takes two arguments {arg1: colour to increment, arg2: value to increment by} <b>#a249a4</b><br>
 2. <b>Decrement</b> - takes two arguments {arg1: colour to decrement, arg2: value to decrement by} <b>#4a90e2</b><br>
 3. Print Char - takes one argument {arg1: ASCII character to print}<b>#b7e61d</b><br>
