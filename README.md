@@ -1,5 +1,5 @@
-# V*sualFuck
-<h2>A visual esolang inspired by BrainFuck (Mainly Assembly Though)</h2>
+# VisualF*ck
+<h2>A visual esolang inspired by assembly and very partially by BrainF*ck</h2>
 <hr>
 <b>Disclaimer: </b>This is made by me, at 14 so don't expect greatness<br>
 <h2>Basic Explanation</h2>
@@ -27,9 +27,9 @@
 14. End Program - not a function but just a white pixel ends the program <b>#ffffff</b><br>
 <b>Functions that jump to a place (Jump and the if functions) jumps to an instruction, be it declaration of a variable or a function call, so jump to 2 of </b><code>r=65; {r,PRINTC};</code><b>would repeat</b><code>{r,PRINTC};</code>
 <h2>Example with explanation</h2>
-<img src="https://raw.githubusercontent.com/DASPELLER4/VisualFuck/media/code%20run%20through.png"></img>
+<img src="https://raw.githubusercontent.com/DASPELLER4/VisualF-ck/media/code%20run%20through.png"></img>
 <h2>Colour Key</h2>
-<img src="https://raw.githubusercontent.com/DASPELLER4/VisualFuck/media/color%20key.bmp"></img>
+<img src="https://raw.githubusercontent.com/DASPELLER4/VisualF-ck/media/color%20key.bmp"></img>
 <h2>Installation</h2>
 Download the repository:<br>
 <code>git clone https://github.com/DASPELLER4/VisualFuck && cd VisualFuck</code><br>
